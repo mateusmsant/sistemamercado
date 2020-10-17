@@ -1,7 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sqlite3
 textos = ''
-soma_produtos = 0
+somaProdutos = 0
+numPedidos = 0
 
 
 class Ui_CaixaWindow(object):
@@ -13,7 +14,7 @@ class Ui_CaixaWindow(object):
         connection = sqlite3.connect('supermercado.db')
         c = connection.cursor()
 
-        c.execute(f'SELECT fornecedor FROM produtos WHERE estoque > 5')
+        c.execute(f'SELECT fornecedor FROM produtos WHERE estoque < 10')
         nomeFornecedor = c.fetchone()
 
         for nomeReal in nomeFornecedor:
@@ -21,27 +22,30 @@ class Ui_CaixaWindow(object):
             emailFornecedor = c.fetchone()
 
         for emailReal in emailFornecedor:
-            c.execute(f'SELECT nome FROM produtos WHERE estoque > 5')
+            c.execute(f'SELECT nome FROM produtos WHERE estoque < 10')
             nomeProduto = c.fetchone()
 
         for produtoReal in nomeProduto:
             nomeDoProdutoDesejado = produtoReal
 
         msg = email.message_from_string(
-            f"Oi {nomeReal}. O Supermercado Try precisa de 50 unidades de {nomeDoProdutoDesejado}.")
-        msg2 = email.message_from_string(f"Aguardo seu retorno sobre a disponibilidade. Grato!")
+            f"Oi {nomeReal}. O Supermercado Try precisa de 100 unidades de {nomeDoProdutoDesejado}.")
         msg['From'] = "trysupermercado@hotmail.com"
-        msg['To'] = str(emailReal)
+        msg['To'] = emailReal
         msg['Subject'] = "Pedido de compra - Supermercado Try"
 
         s = smtplib.SMTP("smtp.live.com", 587)
-        s.ehlo()  # Hostname to send for this command defaults to the fully qualified domain name of the local host.
-        s.starttls()  # Puts connection to SMTP server in TLS mode
+        s.ehlo()
+        s.starttls()
         s.ehlo()
         s.login('trysupermercado@hotmail.com', '9piu4exx')
-        s.sendmail("trysupermercado@hotmail.com", str(emailReal), msg.as_string() + msg2.as_string())
+        s.sendmail('trysupermercado@hotmail.com', emailReal, msg.as_string())
 
         s.quit()
+
+        c.execute(f"UPDATE produtos SET estoque = 100 WHERE nome = '{nomeDoProdutoDesejado}'")
+        connection.commit()
+        connection.close()
 
     def addItem(self):
         connection = sqlite3.connect('supermercado.db')
@@ -50,7 +54,7 @@ class Ui_CaixaWindow(object):
         codigo1 = self.lineEdit.text()
         quantidade1 = self.lineEdit_2.text()
         global textos
-        global soma_produtos
+        global somaProdutos
         if codigo1.isnumeric() and quantidade1.isnumeric():
             codigo = int(codigo1)
             quantidade = int(quantidade1)
@@ -75,7 +79,7 @@ class Ui_CaixaWindow(object):
                     if get and quantidade > 0:
                         for item in get:
                             resultado = item * quantidade
-                            soma_produtos += resultado
+                            somaProdutos += resultado
                             c.execute(f"SELECT nome FROM produtos WHERE codigo = '{codigo}'")
                             nome = c.fetchone()
                             for name in nome:
@@ -107,7 +111,10 @@ class Ui_CaixaWindow(object):
                     self.oper.setText('Você não pode digitar um código ou uma quantidade negativa. ')
 
         if estoque < 10:
-            self.emailParaFornecedor()
+            if estoque < 0:
+                pass
+            else:
+                self.emailParaFornecedor()
 
 
     def reset(self):
@@ -115,25 +122,25 @@ class Ui_CaixaWindow(object):
         self.total.setText('')
         global textos
         textos = ' '
-        global soma_produtos
-        soma_produtos = 0
+        global somaProdutos
+        somaProdutos = 0
 
         
 
     def showTotal(self):
         if not self.trocodef.text():
-            text = f'    Total da compra: R$ {soma_produtos}.'
+            text = f'    Total da compra: R$ {somaProdutos}.'
             self.total.setText(text)
         else:
-            diferenca = float(self.trocodef.text()) - soma_produtos
+            diferenca = float(self.trocodef.text()) - somaProdutos
             if diferenca > 0:
-                text = f'    O cliente receberá R$ {round(diferenca, 2)} de troco. Total da compra: R$ {soma_produtos}.'
+                text = f'    O cliente receberá R$ {round(diferenca, 2)} de troco. Total da compra: R$ {somaProdutos}.'
                 self.total.setText(text)
             elif diferenca < 0:
                 text = f'    O cliente não pode comprar mais do que pode pagar.'
                 self.total.setText(text)
             elif diferenca == 0:
-                text = f'    Não há troco. Total da compra: R$ {soma_produtos}'
+                text = f'    Não há troco. Total da compra: R$ {somaProdutos}'
                 self.total.setText(text)
 
 
@@ -225,8 +232,7 @@ class Ui_CaixaWindow(object):
         self.total.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color:rgb(0, 0, 0);\n"
 "border-radius:20px;"
-"font-weight:bold;"
-"text-size:30px;")
+"font-weight:bold;")
         self.total.setObjectName("total")
         self.verticalLayout.addWidget(self.frame)
         self.bottom_bar = QtWidgets.QFrame(self.centralwidget)
