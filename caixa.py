@@ -5,6 +5,44 @@ soma_produtos = 0
 
 
 class Ui_CaixaWindow(object):
+    def emailParaFornecedor(self):
+        import email
+        import smtplib
+        import sqlite3
+
+        connection = sqlite3.connect('supermercado.db')
+        c = connection.cursor()
+
+        c.execute(f'SELECT fornecedor FROM produtos WHERE estoque > 5')
+        nomeFornecedor = c.fetchone()
+
+        for nomeReal in nomeFornecedor:
+            c.execute(f"SELECT email FROM fornecedores WHERE nome = '{nomeReal}'")
+            emailFornecedor = c.fetchone()
+
+        for emailReal in emailFornecedor:
+            c.execute(f'SELECT nome FROM produtos WHERE estoque > 5')
+            nomeProduto = c.fetchone()
+
+        for produtoReal in nomeProduto:
+            nomeDoProdutoDesejado = produtoReal
+
+        msg = email.message_from_string(
+            f"Oi {nomeReal}. O Supermercado Try precisa de 50 unidades de {nomeDoProdutoDesejado}.")
+        msg2 = email.message_from_string(f"Aguardo seu retorno sobre a disponibilidade. Grato!")
+        msg['From'] = "trysupermercado@hotmail.com"
+        msg['To'] = str(emailReal)
+        msg['Subject'] = "Pedido de compra - Supermercado Try"
+
+        s = smtplib.SMTP("smtp.live.com", 587)
+        s.ehlo()  # Hostname to send for this command defaults to the fully qualified domain name of the local host.
+        s.starttls()  # Puts connection to SMTP server in TLS mode
+        s.ehlo()
+        s.login('trysupermercado@hotmail.com', '9piu4exx')
+        s.sendmail("trysupermercado@hotmail.com", str(emailReal), msg.as_string() + msg2.as_string())
+
+        s.quit()
+
     def addItem(self):
         connection = sqlite3.connect('supermercado.db')
         c = connection.cursor()
@@ -31,6 +69,9 @@ class Ui_CaixaWindow(object):
                     c.execute(f"SELECT preço FROM produtos WHERE codigo = '{codigo}'")
                     get = c.fetchone()
 
+
+
+
                     if get and quantidade > 0:
                         for item in get:
                             resultado = item * quantidade
@@ -42,18 +83,16 @@ class Ui_CaixaWindow(object):
                                 textos += tobeshow
                             
                         self.oper.setText(textos)
-
                         connection.commit()
                         c.close()
+
             else:
                 if quantidade > 0:
                     self.oper.setText('Você não digitou um código existente. ')
-                    connection.commit()
-                    c.close()
+
                 else:
                     self.oper.setText('Você não digitou um código existente, nem uma quantidade válida. ')
-                    connection.commit()
-                    c.close()
+
 
         elif codigo1 == '' or quantidade1 == '':
             self.oper.setText('Há espaços vazios. ')
@@ -66,7 +105,11 @@ class Ui_CaixaWindow(object):
             for num1 in quantidade1:
                 if num1 == '-':
                     self.oper.setText('Você não pode digitar um código ou uma quantidade negativa. ')
-        
+
+        if estoque < 10:
+            self.emailParaFornecedor()
+
+
     def reset(self):
         self.oper.setText(' ')
         self.total.setText('')

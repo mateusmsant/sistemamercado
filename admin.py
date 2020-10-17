@@ -1,19 +1,28 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from funcionarios import Ui_FuncWindow
 from produtos import Ui_ProdutosWindow
+from fornecedores import Ui_FornecedorWindow
 
 
 class Ui_telaAdmin(object):
-    def goToProd(self):
+    def produtos(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_ProdutosWindow()
         self.ui.setupUi(self.window)
         self.window.show()
-    def goToFunc(self):
+
+    def fornecedores(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_FornecedorWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
+    def funcionarios(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_FuncWindow()
         self.ui.setupUi(self.window)
         self.window.show()
+
 
     def setupUi(self, telaAdmin):
         telaAdmin.setObjectName("telaAdmin")
@@ -36,13 +45,13 @@ class Ui_telaAdmin(object):
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
-        self.gotoProd = QtWidgets.QPushButton(self.frame)
-        self.gotoProd.setGeometry(QtCore.QRect(0, 100, 211, 91))
+        self.goToProd = QtWidgets.QPushButton(self.frame)
+        self.goToProd.setGeometry(QtCore.QRect(25, 70, 181, 71))
         font = QtGui.QFont()
         font.setFamily("Calibri")
         font.setPointSize(28)
-        self.gotoProd.setFont(font)
-        self.gotoProd.setStyleSheet("QPushButton {\n"
+        self.goToProd.setFont(font)
+        self.goToProd.setStyleSheet("QPushButton {\n"
 "    background-color:rgb(255,255,255);\n"
 "    border:2px solid rgb(60, 60, 60);\n"
 "    border-radius:10px;\n"
@@ -58,10 +67,11 @@ class Ui_telaAdmin(object):
 "    border:2px solid rgb(60, 60, 60);\n"
 "    border-radius:10px;\n"
 "}")
-        self.gotoProd.setObjectName("gotoProd")
-        self.gotoProd.clicked.connect(self.goToProd)
+        self.goToProd.setObjectName("goToProd")
+        self.goToProd.clicked.connect(self.produtos)
+
         self.gotoFunc = QtWidgets.QPushButton(self.frame)
-        self.gotoFunc.setGeometry(QtCore.QRect(230, 100, 241, 91))
+        self.gotoFunc.setGeometry(QtCore.QRect(250, 70, 211, 71))
         font = QtGui.QFont()
         font.setFamily("Calibri")
         font.setPointSize(28)
@@ -83,7 +93,31 @@ class Ui_telaAdmin(object):
 "    border-radius:10px;\n"
 "}")
         self.gotoFunc.setObjectName("gotoFunc")
-        self.gotoFunc.clicked.connect(self.goToFunc)
+        self.gotoFunc.clicked.connect(self.funcionarios)
+        self.gotoForn = QtWidgets.QPushButton(self.frame)
+        self.gotoForn.setGeometry(QtCore.QRect(110, 160, 241, 61))
+        font = QtGui.QFont()
+        font.setFamily("Calibri")
+        font.setPointSize(28)
+        self.gotoForn.setFont(font)
+        self.gotoForn.setStyleSheet("QPushButton {\n"
+"    background-color:rgb(255,255,255);\n"
+"    border:2px solid rgb(60, 60, 60);\n"
+"    border-radius:10px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(229, 229, 229);\n"
+"    border:2px solid rgb(60, 60, 60);\n"
+"    border-radius:10px;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    \n"
+"    background-color: rgb(85, 170, 255);\n"
+"    border:2px solid rgb(60, 60, 60);\n"
+"    border-radius:10px;\n"
+"}")
+        self.gotoForn.setObjectName("gotoForn")
+        self.gotoForn.clicked.connect(self.fornecedores)
         self.verticalLayout.addWidget(self.frame)
         self.bottom_bar = QtWidgets.QFrame(self.centralwidget)
         self.bottom_bar.setMinimumSize(QtCore.QSize(50, 2))
@@ -121,17 +155,20 @@ class Ui_telaAdmin(object):
 
     def retranslateUi(self, telaAdmin):
         _translate = QtCore.QCoreApplication.translate
-        telaAdmin.setWindowTitle(_translate("telaAdmin", "Menu do administrador"))
+        telaAdmin.setWindowTitle(_translate("telaAdmin", "Administrador"))
         telaAdmin.setWindowIcon(QtGui.QIcon('icone.png'))
-        self.gotoProd.setText(_translate("telaAdmin", "Produtos"))
+
+        self.goToProd.setText(_translate("telaAdmin", "Produtos"))
         self.gotoFunc.setText(_translate("telaAdmin", "Funcionários"))
+        self.gotoForn.setText(_translate("telaAdmin", "Fornecedores"))
         self.label_5.setText(_translate("telaAdmin", "Projeto de Introdução à Programação"))
+
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
+    telaAdmin = QtWidgets.QMainWindow()
     ui = Ui_telaAdmin()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    ui.setupUi(telaAdmin)
+    telaAdmin.show()
     sys.exit(app.exec_())

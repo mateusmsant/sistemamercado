@@ -1,8 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from telaAdmin import Ui_telaAdmin
+from admin import Ui_telaAdmin
 from caixa import Ui_CaixaWindow
 from esqueceu_senha import Ui_EsqueceuSenhaWindow
-import datetime
 import sqlite3
 import imagens
 
@@ -299,7 +298,6 @@ class Ui_LoginWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Login"))
         MainWindow.setWindowIcon(QtGui.QIcon('icone.png'))
-
         self.user.setPlaceholderText(_translate("MainWindow", "                         Usuário"))
         self.password.setPlaceholderText(_translate("MainWindow", "                          Senha"))
         self.login.setText(_translate("MainWindow", "Entrar"))
