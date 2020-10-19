@@ -8,20 +8,23 @@ class Ui_EsqueceuSenhaWindow(object):
         c = connection.cursor()
 
         cpfinserido = self.cpfpegarsenha.text()
-        c.execute(f"SELECT userpassword FROM funcionarios WHERE cpf = '{cpfinserido}'")
-        get = c.fetchone()
-        if not get:
-            self.areadetexto.setText(' Seu CPF não está cadastrado. ')
+
+        if not cpfinserido:
+            self.areadetexto.setText('          Você não digitou nada.')
         else:
-            print(get)
-            for senha in get:
-                if senha == '':
-                    self.areadetexto.setText('Você não tem uma senha. ')
-                else:
-                    self.areadetexto.setText(f"          Sua senha é {senha}. ")
-            
-        connection.commit()
-        c.close()
+            c.execute(f"SELECT userpassword FROM funcionarios WHERE cpf = '{cpfinserido}'")
+            get = c.fetchone()
+            if not get:
+                self.areadetexto.setText('Seu CPF não está cadastrado. ')
+            else:
+                for senha in get:
+                    if senha == '':
+                        self.areadetexto.setText('Você não tem uma senha. ')
+                    else:
+                        self.areadetexto.setText(f"          Sua senha é {senha}. ")
+                
+            connection.commit()
+            c.close()
 
     def setupUi(self, EsqueceuSenhaWindow):
         EsqueceuSenhaWindow.setObjectName("EsqueceuSenhaWindow")
@@ -55,7 +58,7 @@ class Ui_EsqueceuSenhaWindow(object):
         self.frame.setGeometry(QtCore.QRect(90, 50, 381, 331))
         self.frame.setStyleSheet("QFrame {\n"
 "    \n"
-"    background-color: rgb(107, 107, 107);\n"
+"    background-color: rgb(60,58,58);\n"
 "    border-radius:60px;\n"
 "}\n"
 ""
@@ -69,7 +72,7 @@ class Ui_EsqueceuSenhaWindow(object):
 "    border:2px solid rgb(255, 255, 255);\n"
 "    border-radius:10px;\n"
 "    background-color: rgb(255, 255, 255);\n"
-"    color:rgb(170, 170, 255);\n"
+"    color: rgb(157, 192, 225);\n"
 "    padding:5px;\n"
 "}\n"
 "QLineEdit:hover {\n"
@@ -83,7 +86,7 @@ class Ui_EsqueceuSenhaWindow(object):
         self.cpfpegarsenha.setText("")
         self.cpfpegarsenha.setObjectName("cpfpegarsenha")
         self.verasenha = QtWidgets.QPushButton(self.frame)
-        self.verasenha.setGeometry(QtCore.QRect(100, 220, 181, 31))
+        self.verasenha.setGeometry(QtCore.QRect(100, 220, 200, 40))
         self.verasenha.setStyleSheet("QPushButton {\n"
 "    background-color:rgb(255,255,255);\n"
 "    border:2px solid rgb(60, 60, 60);\n"
@@ -106,7 +109,7 @@ class Ui_EsqueceuSenhaWindow(object):
         self.areadetexto.setGeometry(QtCore.QRect(40, 10, 301, 111))
         self.areadetexto.setText("")
         self.areadetexto.setObjectName("areadetexto")
-        self.areadetexto.setStyleSheet("color: rgb (255, 255, 255)")
+        self.areadetexto.setStyleSheet("color: rgb(255, 255, 255)")
         self.verticalLayout_2.addWidget(self.frame_4)
         self.verticalLayout.addWidget(self.frame_2)
         self.bottom_bar = QtWidgets.QFrame(self.centralwidget)

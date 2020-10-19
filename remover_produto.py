@@ -47,7 +47,7 @@ class Ui_RemoveProdutoWindow(object):
         self.frame.setStyleSheet("QFrame {\n"
 "    \n"
 "    image: url(:/Images/Images/pngwing.com.png);\n"
-"    background-color: rgb(107, 107, 107);\n"
+"    background-color: rgb(60,58,58);\n"
 "    border-radius:60px;\n"
 "}\n"
 "")
@@ -60,7 +60,7 @@ class Ui_RemoveProdutoWindow(object):
 "    border:2px solid rgb(255, 255, 255);\n"
 "    border-radius:10px;\n"
 "    background-color: rgb(255, 255, 255);\n"
-"    color:rgb(170, 170, 255);\n"
+"    color: rgb(157, 192, 225);\n"
 "    padding:5px;\n"
 "}\n"
 "QLineEdit:hover {\n"
@@ -74,7 +74,7 @@ class Ui_RemoveProdutoWindow(object):
         self.cpfFuncRemovido.setText("")
         self.cpfFuncRemovido.setObjectName("cpfFuncRemovido")
         self.removeFunc = QtWidgets.QPushButton(self.frame)
-        self.removeFunc.setGeometry(QtCore.QRect(100, 220, 181, 31))
+        self.removeFunc.setGeometry(QtCore.QRect(100, 220, 200, 40))
         self.removeFunc.setStyleSheet("QPushButton {\n"
 "    background-color:rgb(255,255,255);\n"
 "    border:2px solid rgb(60, 60, 60);\n"

@@ -81,7 +81,7 @@ class Ui_ProdutosWindow(object):
         self.frame_5.setMaximumSize(QtCore.QSize(56456, 54654))
         self.frame_5.setStyleSheet("QFrame {\n"
 "background-color: rgb(138, 138, 138);\n"
-"color: rgb(170, 170, 255);\n"
+"color:rgb(51, 102, 153);\n"
 "border-radius:20px;\n"
 "}\n"
 "")
@@ -128,6 +128,11 @@ class Ui_ProdutosWindow(object):
         self.tableproduto.setHorizontalHeaderItem(4, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableproduto.setHorizontalHeaderItem(5, item)
+        self.tableproduto.setColumnWidth(0, 50)
+        self.tableproduto.setColumnWidth(1, 180)
+
+
+
         connection = sqlite3.connect('supermercado.db')
         c = connection.cursor()
 
@@ -140,6 +145,7 @@ class Ui_ProdutosWindow(object):
 
         connection.commit()
         c.close()
+
         self.addproduto = QtWidgets.QPushButton(self.frame_7)
         self.addproduto.setGeometry(QtCore.QRect(0, 410, 201, 51))
         self.addproduto.setStyleSheet("QPushButton {\n"

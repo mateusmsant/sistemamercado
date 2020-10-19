@@ -41,18 +41,18 @@ class Ui_AlterarProduto(object):
         AlterarProduto.resize(530, 560)
         AlterarProduto.setMinimumSize(QtCore.QSize(0, 0))
         AlterarProduto.setMaximumSize(QtCore.QSize(530, 560))
-        AlterarProduto.setStyleSheet("background-color: rgb(115, 115, 115);\n"
+        AlterarProduto.setStyleSheet("background-color: rgb(60,58,58);\n"
 "border:50px")
         self.centralwidget = QtWidgets.QWidget(AlterarProduto)
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setPointSize(20)
         self.centralwidget.setFont(font)
         self.centralwidget.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.centralwidget.setStyleSheet("QLineEdit {\n"
 "    border-radius:10px;\n"
 "    padding:5px;\n"
 "    background-color: rgb(255, 255, 255);\n"
-"    color:rgb(170, 170, 255)\n"
+"    color: rgb(157, 192, 225)\n"
 "}\n"
 "QLineEdit:hover {\n"
 "    \n"
@@ -82,29 +82,29 @@ class Ui_AlterarProduto(object):
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
         self.linhaestoqueinicial = QtWidgets.QLineEdit(self.frame_4)
-        self.linhaestoqueinicial.setGeometry(QtCore.QRect(260, 220, 201, 31))
+        self.linhaestoqueinicial.setGeometry(QtCore.QRect(260, 220, 200, 31))
         font = QtGui.QFont()
         font.setPointSize(8)
         self.linhaestoqueinicial.setFont(font)
         self.linhaestoqueinicial.setObjectName("linhaestoqueinicial")
         self.linepreco = QtWidgets.QLineEdit(self.frame_4)
-        self.linepreco.setGeometry(QtCore.QRect(30, 160, 201, 31))
+        self.linepreco.setGeometry(QtCore.QRect(30, 160, 200, 31))
         self.linepreco.setObjectName("linepreco")
         self.linhamarca = QtWidgets.QLineEdit(self.frame_4)
-        self.linhamarca.setGeometry(QtCore.QRect(260, 160, 201, 31))
+        self.linhamarca.setGeometry(QtCore.QRect(260, 160, 200, 31))
         self.linhamarca.setObjectName("linhamarca")
         self.linhafornecedor = QtWidgets.QLineEdit(self.frame_4)
-        self.linhafornecedor.setGeometry(QtCore.QRect(30, 220, 201, 31))
+        self.linhafornecedor.setGeometry(QtCore.QRect(30, 220, 200, 31))
         self.linhafornecedor.setObjectName("linhafornecedor")
         self.linhanome = QtWidgets.QLineEdit(self.frame_4)
-        self.linhanome.setGeometry(QtCore.QRect(260, 100, 201, 31))
+        self.linhanome.setGeometry(QtCore.QRect(150, 100, 200, 31))
         self.linhanome.setObjectName("linhanome")
         self.linecodigo = QtWidgets.QLineEdit(self.frame_4)
-        self.linecodigo.setGeometry(QtCore.QRect(30, 100, 201, 31))
+        self.linecodigo.setGeometry(QtCore.QRect(175, 50, 150, 31))
         self.linecodigo.setReadOnly(False)
         self.linecodigo.setObjectName("linecodigo")
         self.botaoaltproduto = QtWidgets.QPushButton(self.frame_4)
-        self.botaoaltproduto.setGeometry(QtCore.QRect(170, 360, 151, 31))
+        self.botaoaltproduto.setGeometry(QtCore.QRect(150, 360, 200, 40))
         self.botaoaltproduto.setStyleSheet("QPushButton {\n"
 "    background-color:rgb(255,255,255);\n"
 "    border:2px solid rgb(60, 60, 60);\n"
@@ -127,6 +127,8 @@ class Ui_AlterarProduto(object):
         self.label = QtWidgets.QLabel(self.frame_4)
         self.label.setGeometry(QtCore.QRect(10, 270, 471, 51))
         self.label.setObjectName("label")
+        self.label.setStyleSheet("color: rgb(255, 255, 255);"
+        "font-size:10px")
         self.horizontalLayout_2.addWidget(self.frame_4)
         self.verticalLayout.addWidget(self.frame)
         self.bottom_bar = QtWidgets.QFrame(self.centralwidget)
@@ -168,14 +170,14 @@ class Ui_AlterarProduto(object):
         _translate = QtCore.QCoreApplication.translate
         AlterarProduto.setWindowTitle(_translate("AddFuncWindow", "Alterar produto"))
         AlterarProduto.setWindowIcon(QtGui.QIcon('icone.png'))
-        self.linhaestoqueinicial.setPlaceholderText(_translate("AlterarProduto", "                    Estoque"))
+        self.linhaestoqueinicial.setPlaceholderText(_translate("AlterarProduto", "                       Estoque"))
         self.linepreco.setPlaceholderText(_translate("AlterarProduto", "                           Preço"))
         self.linhamarca.setPlaceholderText(_translate("AlterarProduto", "                          Marca"))
         self.linhafornecedor.setPlaceholderText(_translate("AlterarProduto", "                      Fornecedor"))
         self.linhanome.setPlaceholderText(_translate("AlterarProduto", "                          Nome"))
-        self.linecodigo.setPlaceholderText(_translate("AlterarProduto", "                          Código"))
+        self.linecodigo.setPlaceholderText(_translate("AlterarProduto", "                  Código"))
         self.botaoaltproduto.setText(_translate("AlterarProduto", "Salvar alterações"))
-        self.label.setText(_translate("AlterarProduto", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">O código não pode ser alterado. Digite o código do produto que quer alterar.</span></p></body></html>"))
+        self.label.setText(_translate("AlterarProduto", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Digite o código e altere o produto.</span></p></body></html>"))
         self.label_7.setText(_translate("AlterarProduto", "Projeto de Introdução à Programação"))
 
 

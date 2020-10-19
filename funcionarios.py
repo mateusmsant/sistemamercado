@@ -63,7 +63,9 @@ class Ui_FuncWindow(object):
 "}\n"
 "QPushButton:pressed {\n"
 "    background-color:rgb(85, 170, 255)\n"
-"}")
+"}"
+
+        )
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -84,7 +86,7 @@ class Ui_FuncWindow(object):
         self.frame_4.setGeometry(QtCore.QRect(10, 20, 1081, 691))
         self.frame_4.setStyleSheet("QFrame {\n"
 "background-color: rgb(138, 138, 138);\n"
-"color: rgb(170, 170, 255);\n"
+"color:rgb(51, 102, 153);\n"
 "border-radius:60px;\n"
 "}\n"
 "")
@@ -93,7 +95,6 @@ class Ui_FuncWindow(object):
         self.frame_4.setObjectName("frame_4")
         self.frame_6 = QtWidgets.QFrame(self.frame_4)
         self.frame_6.setGeometry(QtCore.QRect(0, 10, 1061, 691))
-        self.frame_6.setStyleSheet("color:rgb(170, 170, 255)")
         self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_6.setObjectName("frame_6")
@@ -131,7 +132,7 @@ class Ui_FuncWindow(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(13, item)
         self.reload_info = QtWidgets.QPushButton(self.frame_6)
-        self.reload_info.setGeometry(QtCore.QRect(750, 560, 201, 51))
+        self.reload_info.setGeometry(QtCore.QRect(750, 550, 250, 75))
         self.reload_info.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(255, 255, 255);\n"
 "}\n"
@@ -250,6 +251,8 @@ class Ui_FuncWindow(object):
         item.setText(_translate("MainWindow", "Cidade"))
         item = self.tableWidget.horizontalHeaderItem(13)
         item.setText(_translate("MainWindow", "Classe"))
+        self.tableWidget.setColumnWidth(3, 130)
+
         self.reload_info.setText(_translate("MainWindow", "Recarregar funcionários"))
         self.pushButton.setText(_translate("MainWindow", "Adicionar um funcionário"))
         self.altfunc.setText(_translate("MainWindow", "Alterar um funcionário"))

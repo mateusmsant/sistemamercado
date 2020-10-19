@@ -5,8 +5,12 @@ from esqueceu_senha import Ui_EsqueceuSenhaWindow
 import sqlite3
 import imagens
 
+tentativas = 0
+
 
 class Ui_LoginWindow(object):
+
+
     def esqueceuSenha(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_EsqueceuSenhaWindow()
@@ -14,6 +18,7 @@ class Ui_LoginWindow(object):
         self.window.show()
 
     def authCheck(self):
+        global tentativas
 
         connection = sqlite3.connect('supermercado.db')
         c = connection.cursor()
@@ -23,14 +28,13 @@ class Ui_LoginWindow(object):
 
         # Admin
         c.execute(f"""SELECT * FROM funcionarios WHERE userlogin = '{loginusado}' AND userpassword = '{senhausada}' AND classe = 'Administrador'""")
-
-        testeforadmin = c.fetchall()
+        testeforadmin = c.fetchone()
         if testeforadmin:
             self.window = QtWidgets.QMainWindow()
             self.ui = Ui_telaAdmin()
             self.ui.setupUi(self.window)
             self.window.show()
-
+        
         # Operador
         c.execute(f"""SELECT * FROM funcionarios WHERE userlogin = '{loginusado}' AND userpassword = '{senhausada}' AND classe = 'Operador'""")
 
@@ -41,8 +45,24 @@ class Ui_LoginWindow(object):
             self.ui.setupUi(self.window)
             self.window.show()
 
-        connection.commit()
-        c.close()
+
+        # Tentativas
+        c.execute(f"""SELECT * FROM funcionarios WHERE userlogin = '{loginusado}'""")
+        senhaErrada = c.fetchone()
+
+        if senhaErrada and senhausada != '':
+            tentativas += 1
+            if tentativas != 4:
+                this = f'Você digitou uma senha inválida. Você tem {5 - tentativas} tentativas.'
+                self.erro_popup.setText(this)
+                self.frame_error.show()
+            else:
+                this = f'Você digitou uma senha inválida. Você tem 1 tentativa.'
+                self.erro_popup.setText(this)
+                self.frame_error.show()
+            
+            
+        
 
         # Campos em branco
         if loginusado + senhausada == '':
@@ -58,10 +78,16 @@ class Ui_LoginWindow(object):
             self.frame_error.show()
         
 
-
+        # Erro de senha 5 vezes
+        if tentativas == 5:
+            app.exit()
+        
+        connection.commit()
+        c.close()
 
 
     def setupUi(self, MainWindow):
+
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(923, 812)
         MainWindow.setMinimumSize(QtCore.QSize(700, 700))
@@ -87,7 +113,7 @@ class Ui_LoginWindow(object):
         self.login_area.setFont(font)
         self.login_area.setStyleSheet("QFrame {\n"
 "    \n"
-"    background-color: rgb(107, 107, 107);\n"
+"    background-color: rgb(60,58,58);\n"
 "    border-radius:60px;\n"
 "}")
         self.login_area.setFrameShape(QtWidgets.QFrame.NoFrame)
@@ -120,7 +146,7 @@ class Ui_LoginWindow(object):
 "    border-radius:10px;\n"
 "    padding:5px;\n"
 "    background-color: rgb(255, 255, 255);\n"
-"    color:rgb(170, 170, 255)\n"
+"    color: rgb(157, 192, 225)\n"
 "}\n"
 "QLineEdit:hover {\n"
 "    \n"
@@ -156,10 +182,10 @@ class Ui_LoginWindow(object):
         self.password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.password.setObjectName("password")
         self.login = QtWidgets.QPushButton(self.login_area)
-        self.login.setGeometry(QtCore.QRect(220, 510, 160, 40))
+        self.login.setGeometry(QtCore.QRect(200, 465, 200, 50))
         self.login.clicked.connect(self.authCheck)
         self.forgotpassword = QtWidgets.QPushButton(self.login_area)
-        self.forgotpassword.setGeometry(QtCore.QRect(225, 465, 150, 35))
+        self.forgotpassword.setGeometry(QtCore.QRect(217, 600, 170, 35))
         self.forgotpassword.setStyleSheet("QPushButton {\n"
 "    background-color:rgb(255,255,255);\n"
 "    border:2px solid rgb(60, 60, 60);\n"

@@ -9,7 +9,6 @@ class Ui_CaixaWindow(object):
     def emailParaFornecedor(self):
         import email
         import smtplib
-        import sqlite3
 
         connection = sqlite3.connect('supermercado.db')
         c = connection.cursor()
@@ -44,17 +43,18 @@ class Ui_CaixaWindow(object):
         s.quit()
 
         c.execute(f"UPDATE produtos SET estoque = 100 WHERE nome = '{nomeDoProdutoDesejado}'")
+        
         connection.commit()
         connection.close()
 
     def addItem(self):
+        global textos, somaProdutos
         connection = sqlite3.connect('supermercado.db')
         c = connection.cursor()
       
         codigo1 = self.lineEdit.text()
         quantidade1 = self.lineEdit_2.text()
-        global textos
-        global somaProdutos
+
         if codigo1.isnumeric() and quantidade1.isnumeric():
             codigo = int(codigo1)
             quantidade = int(quantidade1)
@@ -65,16 +65,13 @@ class Ui_CaixaWindow(object):
                 for estoqueatual in estoquefetch:
                     estoque = estoqueatual - quantidade
                     if estoque < 0:
-                        self.oper.setText('Não há mais esse produto no estoque.')
+                        self.oper.setText('Não há essa quantidade no estoque.')
                         break
 
                     c.execute(f"UPDATE produtos SET estoque = '{estoqueatual - quantidade}' WHERE codigo = '{codigo}'")
                     connection.commit()
                     c.execute(f"SELECT preço FROM produtos WHERE codigo = '{codigo}'")
                     get = c.fetchone()
-
-
-
 
                     if get and quantidade > 0:
                         for item in get:
@@ -85,8 +82,12 @@ class Ui_CaixaWindow(object):
                             for name in nome:
                                 tobeshow = f'Você adicionou {quantidade} do item {name}. Valor a ser pago: {resultado}. \n Estoque: {estoque}. \n'
                                 textos += tobeshow
-                            
+                        
                         self.oper.setText(textos)
+
+                        if estoque < 10 and not estoque < 0:
+                            self.emailParaFornecedor()
+
                         connection.commit()
                         c.close()
 
@@ -94,8 +95,8 @@ class Ui_CaixaWindow(object):
                 if quantidade > 0:
                     self.oper.setText('Você não digitou um código existente. ')
 
-                else:
-                    self.oper.setText('Você não digitou um código existente, nem uma quantidade válida. ')
+                elif quantidade == 0 or codigo == 0:
+                    self.oper.setText('Você não pode digitar 0 nos campos. ')
 
 
         elif codigo1 == '' or quantidade1 == '':
@@ -110,22 +111,16 @@ class Ui_CaixaWindow(object):
                 if num1 == '-':
                     self.oper.setText('Você não pode digitar um código ou uma quantidade negativa. ')
 
-        if estoque < 10:
-            if estoque < 0:
-                pass
-            else:
-                self.emailParaFornecedor()
+
 
 
     def reset(self):
-        self.oper.setText(' ')
+        global textos, somaProdutos
+        self.oper.setText('')
         self.total.setText('')
-        global textos
-        textos = ' '
-        global somaProdutos
-        somaProdutos = 0
 
-        
+        textos = ''
+        somaProdutos = 0
 
     def showTotal(self):
         if not self.trocodef.text():
@@ -140,7 +135,7 @@ class Ui_CaixaWindow(object):
                 text = f'    O cliente não pode comprar mais do que pode pagar.'
                 self.total.setText(text)
             elif diferenca == 0:
-                text = f'    Não há troco. Total da compra: R$ {somaProdutos}'
+                text = f'    Não há troco. Total da compra: R$ {somaProdutos}.'
                 self.total.setText(text)
 
 
@@ -148,7 +143,8 @@ class Ui_CaixaWindow(object):
         CaixaWindow.setObjectName("CaixaWindow")
         CaixaWindow.resize(923, 644)
         CaixaWindow.setMaximumSize(QtCore.QSize(923, 644))
-        CaixaWindow.setStyleSheet("color:rgb(170, 170, 255);\n"
+        CaixaWindow.setMinimumSize(QtCore.QSize(923, 644))
+        CaixaWindow.setStyleSheet("color:rgb(0,0,0);\n"
 "background-color: rgb(115, 115, 115);\n"
 "")
         self.centralwidget = QtWidgets.QWidget(CaixaWindow)
@@ -164,6 +160,8 @@ class Ui_CaixaWindow(object):
 "    background-color:rgb(255,255,255);\n"
 "    border:2px solid rgb(60, 60, 60);\n"
 "    border-radius:10px;\n"
+"    color:rgb(190, 170, 255);\n"
+
 "}\n"
 "QPushButton:hover {\n"
 "    background-color: rgb(229, 229, 229);\n"
@@ -181,7 +179,7 @@ class Ui_CaixaWindow(object):
 "    border-radius:10px;\n"
 "    padding:5px;\n"
 "    background-color: rgb(255, 255, 255);\n"
-"    color:rgb(170, 170, 255)\n"
+"    color: rgb(157, 192, 225)\n"
 "}\n"
 "QLineEdit:hover {\n"
 "    \n"
@@ -195,15 +193,15 @@ class Ui_CaixaWindow(object):
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.pushButton = QtWidgets.QPushButton(self.frame)
-        self.pushButton.setGeometry(QtCore.QRect(620, 230, 171, 51))
+        self.pushButton.setGeometry(QtCore.QRect(600, 230, 200, 40))
         self.pushButton.setObjectName("pushButton")
         self.pushButton.clicked.connect(self.addItem)
         self.pushButton2 = QtWidgets.QPushButton(self.frame)
-        self.pushButton2.setGeometry(QtCore.QRect(620, 470, 171, 51))
+        self.pushButton2.setGeometry(QtCore.QRect(600, 470, 200, 40))
         self.pushButton2.setObjectName("pushButton")
         self.pushButton2.clicked.connect(self.showTotal)
         self.pushButton3 = QtWidgets.QPushButton(self.frame)
-        self.pushButton3.setGeometry(QtCore.QRect(620, 520, 171, 51))
+        self.pushButton3.setGeometry(QtCore.QRect(600, 520, 200, 40))
         self.pushButton3.setObjectName("pushButton")
         self.pushButton3.clicked.connect(self.reset)
         self.trocodef = QtWidgets.QLineEdit(self.frame)
@@ -219,7 +217,7 @@ class Ui_CaixaWindow(object):
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.frame_2 = QtWidgets.QFrame(self.frame)
         self.frame_2.setGeometry(QtCore.QRect(30, 10, 471, 541))
-        self.frame_2.setStyleSheet("background-color:rgb(179, 179, 179);")
+        self.frame_2.setStyleSheet("background-color:rgb(179, 179, 179); ")
         self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_2.setObjectName("frame_2")

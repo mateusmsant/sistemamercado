@@ -42,7 +42,8 @@ class Ui_AddFuncWindow(object):
         AddFuncWindow.setObjectName("AddFuncWindow")
         AddFuncWindow.resize(537, 544)
         AddFuncWindow.setMaximumSize(QtCore.QSize(537, 544))
-        AddFuncWindow.setStyleSheet("background-color: rgb(115, 115, 115);\n"
+        AddFuncWindow.setMinimumSize(QtCore.QSize(537, 544))
+        AddFuncWindow.setStyleSheet("background-color: rgb(60,58,58);\n"
 "border:50px")
 
         self.centralwidget = QtWidgets.QWidget(AddFuncWindow)
@@ -54,7 +55,7 @@ class Ui_AddFuncWindow(object):
 "    border-radius:10px;\n"
 "    padding:5px;\n"
 "    background-color: rgb(255, 255, 255);\n"
-"    color:rgb(170, 170, 255)\n"
+"    color: rgb(157, 192, 225)\n"
 "}\n"
 "QLineEdit:hover {\n"
 "    \n"
@@ -154,7 +155,7 @@ class Ui_AddFuncWindow(object):
         self.label_3.setStyleSheet("color:rgb(255, 255, 255)")
         self.label_3.setObjectName("label_3")
         self.botaoAddFunc = QtWidgets.QPushButton(self.frame)
-        self.botaoAddFunc.setGeometry(QtCore.QRect(180, 430, 151, 31))
+        self.botaoAddFunc.setGeometry(QtCore.QRect(160, 430, 200, 40))
         self.botaoAddFunc.setStyleSheet("QPushButton {\n"
 "    background-color:rgb(255,255,255);\n"
 "    border:2px solid rgb(60, 60, 60);\n"

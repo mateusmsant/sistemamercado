@@ -37,7 +37,7 @@ class Ui_AltFornecedor(object):
         AltFornecedor.resize(525, 549)
         AltFornecedor.setMinimumSize(QtCore.QSize(0, 0))
         AltFornecedor.setMaximumSize(QtCore.QSize(525, 549))
-        AltFornecedor.setStyleSheet("background-color: rgb(115, 115, 115);\n"
+        AltFornecedor.setStyleSheet("background-color: rgb(60,58,58);\n"
 "border:50px")
         self.centralwidget = QtWidgets.QWidget(AltFornecedor)
         font = QtGui.QFont()
@@ -48,7 +48,7 @@ class Ui_AltFornecedor(object):
 "    border-radius:10px;\n"
 "    padding:5px;\n"
 "    background-color: rgb(255, 255, 255);\n"
-"    color:rgb(170, 170, 255)\n"
+"    color: rgb(157, 192, 225)\n"
 "}\n"
 "QLineEdit:hover {\n"
 "    \n"
@@ -84,17 +84,17 @@ class Ui_AltFornecedor(object):
         self.cidade.setGeometry(QtCore.QRect(260, 160, 201, 31))
         self.cidade.setObjectName("cidade")
         self.segmento = QtWidgets.QLineEdit(self.frame_4)
-        self.segmento.setGeometry(QtCore.QRect(140, 220, 201, 31))
+        self.segmento.setGeometry(QtCore.QRect(30, 100, 201, 31))
         self.segmento.setObjectName("segmento")
         self.nome = QtWidgets.QLineEdit(self.frame_4)
         self.nome.setGeometry(QtCore.QRect(260, 100, 201, 31))
         self.nome.setObjectName("nome")
         self.codigo = QtWidgets.QLineEdit(self.frame_4)
-        self.codigo.setGeometry(QtCore.QRect(30, 100, 201, 31))
+        self.codigo.setGeometry(QtCore.QRect(150, 30, 201, 31))
         self.codigo.setReadOnly(False)
         self.codigo.setObjectName("codigo")
         self.saveChanges = QtWidgets.QPushButton(self.frame_4)
-        self.saveChanges.setGeometry(QtCore.QRect(170, 360, 151, 31))
+        self.saveChanges.setGeometry(QtCore.QRect(145, 230, 200, 40))
         self.saveChanges.setStyleSheet("QPushButton {\n"
 "    background-color:rgb(255,255,255);\n"
 "    border:2px solid rgb(60, 60, 60);\n"
@@ -115,8 +115,9 @@ class Ui_AltFornecedor(object):
         self.saveChanges.setObjectName("saveChanges")
         self.saveChanges.clicked.connect(self.saveChangesToForn)
         self.label = QtWidgets.QLabel(self.frame_4)
-        self.label.setGeometry(QtCore.QRect(10, 270, 471, 51))
+        self.label.setGeometry(QtCore.QRect(10, 350, 471, 51))
         self.label.setObjectName("label")
+        self.label.setStyleSheet("color:rgb(255,255,255)")
         self.horizontalLayout_2.addWidget(self.frame_4)
         self.verticalLayout.addWidget(self.frame)
         self.bottom_bar = QtWidgets.QFrame(self.centralwidget)
@@ -164,7 +165,7 @@ class Ui_AltFornecedor(object):
         self.nome.setPlaceholderText(_translate("AltFornecedor", "                          Nome"))
         self.codigo.setPlaceholderText(_translate("AltFornecedor", "                          Código"))
         self.saveChanges.setText(_translate("AltFornecedor", "Salvar alterações"))
-        self.label.setText(_translate("AltFornecedor", "<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">O código é inalterável.</span></p><p align=\"center\"><span style=\" font-size:12pt;\">Linhas em branco não serão alteradas.</span></p></body></html>"))
+        self.label.setText(_translate("AltFornecedor", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Digite o código e altere o fornecedor.</span></p><p align=\"center\"><span style=\" font-size:12pt;\"></span></p></body></html>"))
         self.label_7.setText(_translate("AltFornecedor", "Projeto de Introdução à Programação"))
 
 

@@ -36,10 +36,10 @@ class Ui_AddProduto(object):
 
     def setupUi(self, AddProduto):
         AddProduto.setObjectName("AddProduto")
-        AddProduto.resize(519, 549)
-        AddProduto.setMinimumSize(QtCore.QSize(0, 549))
-        AddProduto.setMaximumSize(QtCore.QSize(950, 549))
-        AddProduto.setStyleSheet("background-color: rgb(115, 115, 115);\n"
+        AddProduto.resize(530, 559)
+        AddProduto.setMinimumSize(QtCore.QSize(540, 550))
+        AddProduto.setMaximumSize(QtCore.QSize(540, 550))
+        AddProduto.setStyleSheet("background-color: rgb(60,58,58);\n"
 "border:50px")
         self.centralwidget = QtWidgets.QWidget(AddProduto)
         font = QtGui.QFont()
@@ -50,7 +50,7 @@ class Ui_AddProduto(object):
 "    border-radius:10px;\n"
 "    padding:5px;\n"
 "    background-color: rgb(255, 255, 255);\n"
-"    color:rgb(170, 170, 255)\n"
+"    color: rgb(157, 192, 225)\n"
 "}\n"
 "QLineEdit:hover {\n"
 "    \n"
@@ -102,7 +102,7 @@ class Ui_AddProduto(object):
         self.linecodigo.setReadOnly(False)
         self.linecodigo.setObjectName("linecodigo")
         self.botaoaddproduto = QtWidgets.QPushButton(self.frame_4)
-        self.botaoaddproduto.setGeometry(QtCore.QRect(170, 340, 151, 31))
+        self.botaoaddproduto.setGeometry(QtCore.QRect(140, 300, 200, 40))
         self.botaoaddproduto.setStyleSheet("QPushButton {\n"
 "    background-color:rgb(255,255,255);\n"
 "    border:2px solid rgb(60, 60, 60);\n"

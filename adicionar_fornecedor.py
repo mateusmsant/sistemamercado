@@ -32,7 +32,7 @@ class Ui_addFornecedor(object):
         addFornecedor.resize(497, 447)
         addFornecedor.setMinimumSize(QtCore.QSize(497, 447))
         addFornecedor.setMaximumSize(QtCore.QSize(497, 447))
-        addFornecedor.setStyleSheet("background-color: rgb(115, 115, 115);\n"
+        addFornecedor.setStyleSheet("background-color: rgb(60,58,58);\n"
 "border:50px")
         self.centralwidget = QtWidgets.QWidget(addFornecedor)
         font = QtGui.QFont()
@@ -43,7 +43,7 @@ class Ui_addFornecedor(object):
 "    border-radius:10px;\n"
 "    padding:5px;\n"
 "    background-color: rgb(255, 255, 255);\n"
-"    color:rgb(170, 170, 255)\n"
+"    color: rgb(157, 192, 225)\n"
 "}\n"
 "QLineEdit:hover {\n"
 "    \n"
@@ -85,7 +85,7 @@ class Ui_addFornecedor(object):
         self.cidade.setText("")
         self.cidade.setObjectName("cidade")
         self.addFornecedor = QtWidgets.QPushButton(self.frame_2)
-        self.addFornecedor.setGeometry(QtCore.QRect(150, 300, 201, 51))
+        self.addFornecedor.setGeometry(QtCore.QRect(150, 260, 200, 40))
         self.addFornecedor.setStyleSheet("QPushButton {\n"
 "    background-color:rgb(255,255,255);\n"
 "    border:2px solid rgb(60, 60, 60);\n"

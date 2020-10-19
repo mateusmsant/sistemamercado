@@ -45,13 +45,14 @@ class Ui_FornecedorWindow(object):
         FornecedorWindow.setMinimumSize(QtCore.QSize(737, 582))
         FornecedorWindow.setMaximumSize(QtCore.QSize(737, 582))
         FornecedorWindow.setStyleSheet("background-color: rgb(107, 107, 107)")
-        self.filosofiakantiana = QtWidgets.QWidget(FornecedorWindow)
-        self.filosofiakantiana.setStyleSheet("QLineEdit {\n"
+        self.aaa = QtWidgets.QWidget(FornecedorWindow)
+        self.aaa.setStyleSheet("QLineEdit {\n"
 "    border-radius:10px;\n"
 "    padding:5px;\n"
 "    background-color: rgb(255, 255, 255);\n"
 "    color:rgb(170, 170, 255)\n"
 "}\n"
+
 "QLineEdit:hover {\n"
 "    \n"
 "    background-color: rgb(229, 229, 229);\n"
@@ -60,10 +61,10 @@ class Ui_FornecedorWindow(object):
 "QLineEdit:focus {\n"
 "    border: 3px solid rgb(85, 170, 255)\n"
 "}")
-        self.filosofiakantiana.setObjectName("filosofiakantiana")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.filosofiakantiana)
+        self.aaa.setObjectName("aaa")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.aaa)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.content2 = QtWidgets.QFrame(self.filosofiakantiana)
+        self.content2 = QtWidgets.QFrame(self.aaa)
         self.content2.setMinimumSize(QtCore.QSize(719, 516))
         self.content2.setMaximumSize(QtCore.QSize(213213, 5000))
         self.content2.setStyleSheet("QFrame {\n"
@@ -80,7 +81,7 @@ class Ui_FornecedorWindow(object):
         self.frame_5.setMaximumSize(QtCore.QSize(56456, 54654))
         self.frame_5.setStyleSheet("QFrame {\n"
 "background-color: rgb(138, 138, 138);\n"
-"color: rgb(170, 170, 255);\n"
+"color:rgb(51, 102, 153);"
 "border-radius:20px;\n"
 "}\n"
 "")
@@ -174,7 +175,7 @@ class Ui_FornecedorWindow(object):
         self.alterarfornecedor.setObjectName("alterarfornecedor")
         self.alterarfornecedor.clicked.connect(self.openAltFornecedorWindow)
         self.verticalLayout.addWidget(self.content2)
-        self.botbarasalways = QtWidgets.QFrame(self.filosofiakantiana)
+        self.botbarasalways = QtWidgets.QFrame(self.aaa)
         self.botbarasalways.setMaximumSize(QtCore.QSize(16777215, 35))
         self.botbarasalways.setStyleSheet("background-color: rgb(85, 170, 255);\n"
 "border-radius:5px;")
@@ -198,7 +199,7 @@ class Ui_FornecedorWindow(object):
         self.kant.setObjectName("kant")
         self.horizontalLayout.addWidget(self.kant)
         self.verticalLayout.addWidget(self.botbarasalways)
-        FornecedorWindow.setCentralWidget(self.filosofiakantiana)
+        FornecedorWindow.setCentralWidget(self.aaa)
         self.actionFuncion_rios = QtWidgets.QAction(FornecedorWindow)
         self.actionFuncion_rios.setObjectName("actionFuncion_rios")
         self.actionProdutos = QtWidgets.QAction(FornecedorWindow)
@@ -240,6 +241,7 @@ class Ui_FornecedorWindow(object):
         self.kant.setText(_translate("FornecedorWindow", "                                Projeto de Introdução à Programação"))
         self.actionFuncion_rios.setText(_translate("FornecedorWindow", "Funcionários"))
         self.actionProdutos.setText(_translate("FornecedorWindow", "Produtos"))
+        self.tableproduto.setColumnWidth(2, 200)
 
 
 if __name__ == "__main__":

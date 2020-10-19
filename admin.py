@@ -38,7 +38,7 @@ class Ui_telaAdmin(object):
         self.frame = QtWidgets.QFrame(self.centralwidget)
         self.frame.setStyleSheet("QFrame {\n"
 "    \n"
-"    background-color: rgb(107, 107, 107);\n"
+"    background-color: rgb(60,58,58);\n"
 "    border-radius:60px;\n"
 "}\n"
 "")
@@ -46,10 +46,10 @@ class Ui_telaAdmin(object):
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.goToProd = QtWidgets.QPushButton(self.frame)
-        self.goToProd.setGeometry(QtCore.QRect(25, 70, 181, 71))
+        self.goToProd.setGeometry(QtCore.QRect(25, 70, 200, 55))
         font = QtGui.QFont()
         font.setFamily("Calibri")
-        font.setPointSize(28)
+        font.setPointSize(23)
         self.goToProd.setFont(font)
         self.goToProd.setStyleSheet("QPushButton {\n"
 "    background-color:rgb(255,255,255);\n"
@@ -71,10 +71,10 @@ class Ui_telaAdmin(object):
         self.goToProd.clicked.connect(self.produtos)
 
         self.gotoFunc = QtWidgets.QPushButton(self.frame)
-        self.gotoFunc.setGeometry(QtCore.QRect(250, 70, 211, 71))
+        self.gotoFunc.setGeometry(QtCore.QRect(250, 70, 200, 55))
         font = QtGui.QFont()
         font.setFamily("Calibri")
-        font.setPointSize(28)
+        font.setPointSize(23)
         self.gotoFunc.setFont(font)
         self.gotoFunc.setStyleSheet("QPushButton {\n"
 "    background-color:rgb(255,255,255);\n"
@@ -83,6 +83,7 @@ class Ui_telaAdmin(object):
 "}\n"
 "QPushButton:hover {\n"
 "    background-color: rgb(229, 229, 229);\n"
+
 "    border:2px solid rgb(60, 60, 60);\n"
 "    border-radius:10px;\n"
 "}\n"
@@ -95,10 +96,10 @@ class Ui_telaAdmin(object):
         self.gotoFunc.setObjectName("gotoFunc")
         self.gotoFunc.clicked.connect(self.funcionarios)
         self.gotoForn = QtWidgets.QPushButton(self.frame)
-        self.gotoForn.setGeometry(QtCore.QRect(110, 160, 241, 61))
+        self.gotoForn.setGeometry(QtCore.QRect(130, 150, 200, 55))
         font = QtGui.QFont()
         font.setFamily("Calibri")
-        font.setPointSize(28)
+        font.setPointSize(23)
         self.gotoForn.setFont(font)
         self.gotoForn.setStyleSheet("QPushButton {\n"
 "    background-color:rgb(255,255,255);\n"

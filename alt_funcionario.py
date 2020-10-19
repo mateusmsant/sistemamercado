@@ -82,7 +82,7 @@ class Ui_AltFuncWindow(object):
         AltFuncWindow.setObjectName("AltFuncWindow")
         AltFuncWindow.resize(532, 547)
         AltFuncWindow.setMaximumSize(QtCore.QSize(950, 900))
-        AltFuncWindow.setStyleSheet("background-color: rgb(115, 115, 115);\n"
+        AltFuncWindow.setStyleSheet("background-color: rgb(60,58,58);\n"
 "border:50px")
         self.centralwidget = QtWidgets.QWidget(AltFuncWindow)
         font = QtGui.QFont()
@@ -93,7 +93,7 @@ class Ui_AltFuncWindow(object):
 "    border-radius:10px;\n"
 "    padding:5px;\n"
 "    background-color: rgb(255, 255, 255);\n"
-"    color:rgb(170, 170, 255)\n"
+"    color: rgb(157, 192, 225)\n"
 "}\n"
 "QLineEdit:hover {\n"
 "    \n"
@@ -193,7 +193,7 @@ class Ui_AltFuncWindow(object):
         self.label_3.setStyleSheet("color:rgb(255, 255, 255)")
         self.label_3.setObjectName("label_3")
         self.botaoAltFunc = QtWidgets.QPushButton(self.frame)
-        self.botaoAltFunc.setGeometry(QtCore.QRect(315, 420, 170, 50))
+        self.botaoAltFunc.setGeometry(QtCore.QRect(295, 430, 200, 40))
         self.botaoAltFunc.setStyleSheet("QPushButton {\n"
 "    background-color:rgb(255,255,255);\n"
 "    border:2px solid rgb(60, 60, 60);\n"
@@ -223,25 +223,26 @@ class Ui_AltFuncWindow(object):
         self.linha_sexo.setGeometry(QtCore.QRect(30, 160, 181, 31))
         self.linha_sexo.setObjectName("linha_sexo")
         self.linha_cpf = QtWidgets.QLineEdit(self.frame_5)
-        self.linha_cpf.setGeometry(QtCore.QRect(30, 80, 181, 31))
+        self.linha_cpf.setGeometry(QtCore.QRect(30, 0, 181, 31))
         self.linha_cpf.setObjectName("linha_cpf")
         self.label_5 = QtWidgets.QLabel(self.frame_5)
-        self.label_5.setGeometry(QtCore.QRect(10, 0, 131, 21))
+        self.label_5.setGeometry(QtCore.QRect(10, 40, 131, 21))
         font = QtGui.QFont()
         font.setPointSize(11)
         self.label_5.setFont(font)
         self.label_5.setStyleSheet("color:rgb(255, 255, 255)")
         self.label_5.setObjectName("label_5")
         self.linha_nome = QtWidgets.QLineEdit(self.frame_5)
-        self.linha_nome.setGeometry(QtCore.QRect(30, 40, 181, 31))
+        self.linha_nome.setGeometry(QtCore.QRect(30, 75, 181, 31))
         self.linha_nome.setText("")
         self.linha_nome.setObjectName("linha_nome")
         self.linha_data = QtWidgets.QLineEdit(self.frame_5)
         self.linha_data.setGeometry(QtCore.QRect(30, 120, 181, 31))
         self.linha_data.setObjectName("linha_data")
         self.label_6 = QtWidgets.QLabel(self.frame)
-        self.label_6.setGeometry(QtCore.QRect(10, 430, 291, 41))
+        self.label_6.setGeometry(QtCore.QRect(10, 430, 200, 41))
         self.label_6.setObjectName("label_6")
+        self.label_6.setStyleSheet("color:rgb(255,255,255)")
         self.verticalLayout.addWidget(self.frame)
         self.bottom_bar = QtWidgets.QFrame(self.centralwidget)
         self.bottom_bar.setMinimumSize(QtCore.QSize(50, 45))
@@ -301,7 +302,7 @@ class Ui_AltFuncWindow(object):
         self.label_5.setText(_translate("AltFuncWindow", "Dados pessoais"))
         self.linha_nome.setPlaceholderText(_translate("AltFuncWindow", "                      Nome"))
         self.linha_data.setPlaceholderText(_translate("AltFuncWindow", "           Data de nascimento"))
-        self.label_6.setText(_translate("AltFuncWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Digite o CPF do funcionário e altere o que quiser.</span></p></body></html>"))
+        self.label_6.setText(_translate("AltFuncWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt;\">Insira o CPF e altere o funcionário.</span></p></body></html>"))
         self.label_7.setText(_translate("AltFuncWindow", "Projeto de Introdução à Programação"))
 
 if __name__ == "__main__":
