@@ -9,8 +9,6 @@ tentativas = 0
 
 
 class Ui_LoginWindow(object):
-
-
     def esqueceuSenha(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_EsqueceuSenhaWindow()
@@ -30,24 +28,27 @@ class Ui_LoginWindow(object):
         c.execute(f"""SELECT * FROM funcionarios WHERE userlogin = '{loginusado}' AND userpassword = '{senhausada}' AND classe = 'Administrador'""")
         testeforadmin = c.fetchone()
         if testeforadmin:
+            self.frame_error.hide()
             self.window = QtWidgets.QMainWindow()
             self.ui = Ui_telaAdmin()
             self.ui.setupUi(self.window)
             self.window.show()
+           
         
         # Operador
         c.execute(f"""SELECT * FROM funcionarios WHERE userlogin = '{loginusado}' AND userpassword = '{senhausada}' AND classe = 'Operador'""")
-
         testeforoperador = c.fetchall()
         if testeforoperador:
+            self.frame_error.hide()
             self.window = QtWidgets.QMainWindow()
             self.ui = Ui_CaixaWindow()
             self.ui.setupUi(self.window)
             self.window.show()
 
+  
 
         # Tentativas
-        c.execute(f"""SELECT * FROM funcionarios WHERE userlogin = '{loginusado}'""")
+        c.execute(f"""SELECT * FROM funcionarios WHERE userlogin = '{loginusado}' AND userpassword != '{senhausada}'""")
         senhaErrada = c.fetchone()
 
         if senhaErrada and senhausada != '':
@@ -90,7 +91,8 @@ class Ui_LoginWindow(object):
 
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(923, 812)
-        MainWindow.setMinimumSize(QtCore.QSize(700, 700))
+        MainWindow.setMinimumSize(QtCore.QSize(923, 812))
+        MainWindow.setMaximumSize(QtCore.QSize(923, 812))
         MainWindow.setAutoFillBackground(False)
         MainWindow.setStyleSheet("color:rgb(170, 170, 255);\n"
 "background-color: rgb(115, 115, 115);\n"

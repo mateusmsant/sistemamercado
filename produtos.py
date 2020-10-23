@@ -43,7 +43,7 @@ class Ui_ProdutosWindow(object):
     def setupUi(self, ProdutosWindow):
         ProdutosWindow.setObjectName("ProdutosWindow")
         ProdutosWindow.resize(737, 582)
-        ProdutosWindow.setMinimumSize(QtCore.QSize(0, 0))
+        ProdutosWindow.setMinimumSize(QtCore.QSize(737, 582))
         ProdutosWindow.setMaximumSize(QtCore.QSize(737, 582))
         ProdutosWindow.setStyleSheet("background-color: rgb(107, 107, 107)")
         self.filosofiakantiana = QtWidgets.QWidget(ProdutosWindow)

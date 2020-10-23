@@ -13,19 +13,16 @@ class Ui_addFornecedor(object):
         cidade = self.cidade.text()
         segmento = self.segmento.text()
     
-        # Teste de existência
         query = f"SELECT codigo FROM fornecedores WHERE codigo = '{codigo}'"
         c.execute(query)
         result = c.fetchall()
         
-        if not result:
-            c.execute("""INSERT INTO fornecedores (codigo, nome, email, cidade, segmento) VALUES (?,?,?,?,?)""", (codigo, nome, email, cidade, segmento))
+        if codigo != '':
+            if not result:
+                c.execute("""INSERT INTO fornecedores (codigo, nome, email, cidade, segmento) VALUES (?,?,?,?,?)""", (codigo, nome, email, cidade, segmento))
 
         connection.commit()
         c.close()
-
-
-
 
     def setupUi(self, addFornecedor):
         addFornecedor.setObjectName("addFornecedor")

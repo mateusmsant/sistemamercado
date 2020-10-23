@@ -35,7 +35,7 @@ class Ui_AltFornecedor(object):
     def setupUi(self, AltFornecedor):
         AltFornecedor.setObjectName("AltFornecedor")
         AltFornecedor.resize(525, 549)
-        AltFornecedor.setMinimumSize(QtCore.QSize(0, 0))
+        AltFornecedor.setMinimumSize(QtCore.QSize(525, 549))
         AltFornecedor.setMaximumSize(QtCore.QSize(525, 549))
         AltFornecedor.setStyleSheet("background-color: rgb(60,58,58);\n"
 "border:50px")

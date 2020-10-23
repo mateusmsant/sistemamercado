@@ -4,7 +4,6 @@ textos = ''
 somaProdutos = 0
 numPedidos = 0
 
-
 class Ui_CaixaWindow(object):
     def emailParaFornecedor(self):
         import email
@@ -129,7 +128,7 @@ class Ui_CaixaWindow(object):
         else:
             diferenca = float(self.trocodef.text()) - somaProdutos
             if diferenca > 0:
-                text = f'    O cliente receberá R$ {round(diferenca, 2)} de troco. Total da compra: R$ {somaProdutos}.'
+                text = f'    O cliente receberá R$ {round(diferenca, 2)} de troco. Total da compra: R$ {round(somaProdutos, 2)}.'
                 self.total.setText(text)
             elif diferenca < 0:
                 text = f'    O cliente não pode comprar mais do que pode pagar.'

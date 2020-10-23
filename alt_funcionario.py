@@ -81,7 +81,9 @@ class Ui_AltFuncWindow(object):
     def setupUi(self, AltFuncWindow):
         AltFuncWindow.setObjectName("AltFuncWindow")
         AltFuncWindow.resize(532, 547)
-        AltFuncWindow.setMaximumSize(QtCore.QSize(950, 900))
+        AltFuncWindow.setMinimumSize(QtCore.QSize(532, 547))
+
+        AltFuncWindow.setMaximumSize(QtCore.QSize(532, 547))
         AltFuncWindow.setStyleSheet("background-color: rgb(60,58,58);\n"
 "border:50px")
         self.centralwidget = QtWidgets.QWidget(AltFuncWindow)

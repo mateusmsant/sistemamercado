@@ -39,7 +39,7 @@ class Ui_AlterarProduto(object):
     def setupUi(self, AlterarProduto):
         AlterarProduto.setObjectName("AlterarProduto")
         AlterarProduto.resize(530, 560)
-        AlterarProduto.setMinimumSize(QtCore.QSize(0, 0))
+        AlterarProduto.setMinimumSize(QtCore.QSize(530, 560))
         AlterarProduto.setMaximumSize(QtCore.QSize(530, 560))
         AlterarProduto.setStyleSheet("background-color: rgb(60,58,58);\n"
 "border:50px")

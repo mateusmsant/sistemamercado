@@ -30,10 +30,6 @@ class Ui_AddProduto(object):
             connection.commit()
             c.close()
 
-
-
-
-
     def setupUi(self, AddProduto):
         AddProduto.setObjectName("AddProduto")
         AddProduto.resize(530, 559)
@@ -171,6 +167,7 @@ class Ui_AddProduto(object):
         self.linecodigo.setPlaceholderText(_translate("AddProduto", "                          Código"))
         self.botaoaddproduto.setText(_translate("AddProduto", "Adicionar produto"))
         self.label_7.setText(_translate("AddProduto", "Projeto de Introdução à Programação"))
+
 
 if __name__ == "__main__":
     import sys

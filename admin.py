@@ -27,6 +27,8 @@ class Ui_telaAdmin(object):
     def setupUi(self, telaAdmin):
         telaAdmin.setObjectName("telaAdmin")
         telaAdmin.resize(490, 334)
+        telaAdmin.setMinimumSize(QtCore.QSize(490, 334))
+
         telaAdmin.setMaximumSize(QtCore.QSize(490, 334))
         telaAdmin.setStyleSheet("color:rgb(170, 170, 255);\n"
 "background-color: rgb(115, 115, 115);\n"

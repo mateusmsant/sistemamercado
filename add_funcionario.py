@@ -23,20 +23,16 @@ class Ui_AddFuncWindow(object):
         classe = self.linha_classe.text()
 
         
-        # Existência do cpf
-        query = f"SELECT cpf FROM funcionarios WHERE cpf = '{cpf}'"
-        c.execute(query)
-        result = c.fetchall()
-        
-        if not result:
-            c.execute("""INSERT INTO funcionarios (nome, cpf, sexo, datanascimento, telefone, celular, email, userlogin, userpassword, rua, numero, bairro, cidade, classe) 
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (
-            nome, cpf, sexo, datanascimento, telefone, celular, email, userlogin, userpassword, rua, numero, bairro, cidade,
-            classe))
+        if nome and cpf and datanascimento and sexo and telefone and celular and email and userlogin and userpassword and rua and bairro and cidade and classe == '':
+            c.execute(f"SELECT cpf FROM funcionarios WHERE cpf = '{cpf}'")        
+            if not c.fetchall():
+                c.execute("""INSERT INTO funcionarios (nome, cpf, sexo, datanascimento, telefone, celular, email, userlogin, userpassword, rua, numero, bairro, cidade, classe) 
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (
+                nome, cpf, sexo, datanascimento, telefone, celular, email, userlogin, userpassword, rua, numero, bairro, cidade,
+                classe))
             
         connection.commit()
         c.close()
-
 
     def setupUi(self, AddFuncWindow):
         AddFuncWindow.setObjectName("AddFuncWindow")
@@ -261,9 +257,7 @@ class Ui_AddFuncWindow(object):
         self.linha_data.setPlaceholderText(_translate("AddFuncWindow", "           Data de nascimento"))
         self.label_7.setText(_translate("AddFuncWindow", "Projeto de Introdução à Programação"))
 
-
-
-
+        
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

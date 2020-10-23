@@ -10,7 +10,7 @@ class Ui_EsqueceuSenhaWindow(object):
         cpfinserido = self.cpfpegarsenha.text()
 
         if not cpfinserido:
-            self.areadetexto.setText('          Você não digitou nada.')
+            self.areadetexto.setText('')
         else:
             c.execute(f"SELECT userpassword FROM funcionarios WHERE cpf = '{cpfinserido}'")
             get = c.fetchone()
