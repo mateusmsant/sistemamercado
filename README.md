@@ -16,7 +16,7 @@ pip install PyQt5
 ## Usabilidade
 
 ```python
-Ao rodar o arquivo Login.py você verá uma tela de login.
+Ao rodar o arquivo Login.py você verá uma tela de login
 
 Pra testar o sistema como administrador: admin/admin
 E como operador: operador/operador
