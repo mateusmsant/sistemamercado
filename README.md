@@ -1,10 +1,13 @@
 # Sistema de mercado
 
+```
 Interface: PyQt
 
 Banco de dados: sqlite3
 
 Envio de emails: smtp + emails
+```
+
 ## Instalação
 
 Instale o PyQt5 por meio do pip:
